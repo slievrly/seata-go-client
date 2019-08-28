@@ -1,2 +1,2 @@
-# seata-go-client
-seata-go-client
+# Introduce
+Seata client implemented in Golang (Doing...
