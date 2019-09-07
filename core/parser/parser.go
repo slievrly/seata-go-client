@@ -20,11 +20,13 @@ type SQLRecognizer interface {
 
 //The interface Where recognizer.
 type WhereRecognizer interface {
+	SQLRecognizer
 	GetWhereCondition(columnName string) (string, error)
 }
 
 //The interface Sql update recognizer.
 type SQLUpdateRecognizer interface {
+	SQLRecognizer
 	//Gets update columns.
 	GetUpdateColumns() ([]string, error)
 	//Gets update values.
@@ -38,6 +40,7 @@ type SQLSelectRecognizer interface {
 
 //The interface Sql insert recognizer.
 type SQLInsertRecognizer interface {
+	SQLRecognizer
 	//Gets insert columns.
 	GetInsertColumns() ([]string, error)
 	//Gets insert rows.

@@ -1,9 +1,11 @@
 package consts
 
 //The enum Sql type
-type SQLType uint
+type SQLType int
 
-const(
+const (
+	//No Support
+	SQLTypeNotSupport = -1
 	//Select sql type.
 	SQLTypeSelect = 0
 	//Insert sql type.
