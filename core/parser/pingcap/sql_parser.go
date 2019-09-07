@@ -52,59 +52,10 @@ type MySQLWhereRecognizer struct {
 	MySQLRecognizer
 }
 
+func (MySQLWhereRecognizer) GetWhereCondition() (string, error) {
+	panic("implement me")
+}
+
 type MySQLSelectForUpdateRecognizer struct {
 	MySQLWhereRecognizer
 }
-
-//type subqueryChecker struct {
-//	text string
-//}
-//
-//// Enter implements ast.Visitor interface.
-//func (sc *subqueryChecker) Enter(inNode ast.Node) (outNode ast.Node, skipChildren bool) {
-//	if expr, ok := inNode.(*ast.SubqueryExpr); ok {
-//		fmt.Println(expr.Query)
-//		return inNode, false
-//	} else if expr, ok := inNode.(*ast.SelectField); ok {
-//		fmt.Println(expr.WildCard)
-//		return inNode, false
-//	} else if expr, ok := inNode.(*ast.TableName); ok {
-//		fmt.Println(expr.Name)
-//		return inNode, false
-//	} else if expr, ok := inNode.(*ast.TableSource); ok {
-//		fmt.Println(expr.AsName)
-//		return inNode, false
-//	} else if expr, ok := inNode.(*ast.FieldList); ok {
-//		for _, f := range expr.Fields {
-//			if c, ok := f.Expr.(*ast.ColumnNameExpr); ok {
-//				fmt.Println(c.Name)
-//			}
-//		}
-//		fmt.Println()
-//		return inNode, false
-//	} else if expr, ok := inNode.(*ast.SelectStmt); ok {
-//		fmt.Println(expr.From.TableRefs.Left.Text())
-//		return inNode, false
-//	}
-//	return inNode, false
-//}
-//
-//// Leave implements ast.Visitor interface.
-//func (sc *subqueryChecker) Leave(inNode ast.Node) (node ast.Node, ok bool) {
-//	v := reflect.ValueOf(inNode)
-//	fmt.Println(v.Elem().String())
-//	return inNode, true
-//}
-//
-////Just debugger
-//func main() {
-//
-//	p := parser.New()
-//
-//	// 2. Parse a text SQL into AST([]ast.StmtNode).
-//	stmtNodes, _, err := p.Parse("select name, age from tbl t where id = 1", "", "")
-//
-//	stmtNodes[0].Accept(&subqueryChecker{})
-//	// 3. Use AST to do cool things.
-//	fmt.Println(stmtNodes[0].Text(), err)
-//}

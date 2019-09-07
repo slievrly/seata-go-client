@@ -29,3 +29,17 @@ func (tv *TableVisitor) Leave(inNode ast.Node) (node ast.Node, ok bool) {
 func GetTableVisitor() TableVisitor {
 	return TableVisitor{}
 }
+
+type WhereVisitor struct {
+	WhereCond string
+}
+
+func (tv *WhereVisitor) Enter(inNode ast.Node) (outNode ast.Node, skipChildren bool) {
+	if _, ok := inNode.(*ast.BinaryOperationExpr); ok {
+	}
+	return inNode, false
+}
+
+func (tv *WhereVisitor) Leave(inNode ast.Node) (node ast.Node, ok bool) {
+	return inNode, true
+}

@@ -21,7 +21,7 @@ type SQLRecognizer interface {
 //The interface Where recognizer.
 type WhereRecognizer interface {
 	SQLRecognizer
-	GetWhereCondition(columnName string) (string, error)
+	GetWhereCondition() (string, error)
 }
 
 //The interface Sql update recognizer.
