@@ -20,7 +20,6 @@ var levelMap = map[string]zapcore.Level{
 	"info":   zapcore.InfoLevel,
 	"warn":   zapcore.WarnLevel,
 	"error":  zapcore.ErrorLevel,
-	"dpanic": zapcore.DPanicLevel,
 	"panic":  zapcore.PanicLevel,
 	"fatal":  zapcore.FatalLevel,
 }
@@ -70,8 +69,8 @@ func getLoggerLevel(lvl string) zapcore.Level {
 	return zapcore.InfoLevel
 }
 
-// 获得默认Logger对象
-func GetDefaultLog() *SysLogger {
+//Get Default logger
+func GetDefaultLogger() *SysLogger {
 	return CreateLogger("default")
 }
 
@@ -81,7 +80,7 @@ func CreateLogger(name string) *SysLogger {
 	}
 }
 
-// 获得Logger对象
+//Init logger
 func (s *SysLogger) Init() {
 	if s.log == nil {
 		_lock.Lock()
@@ -100,11 +99,11 @@ func (s *SysLogger) InitLogger() *SysLogger {
 
 	level := getLoggerLevel(logConfig.Level)
 	syncWriter := zapcore.AddSync(&lumberjack.Logger{
-		Filename:   logConfig.LogPath, // ⽇志⽂件路径
-		MaxSize:    1024,              // megabytes
-		MaxBackups: 20,                //最多保留20个备份
+		Filename:   logConfig.LogPath,
+		MaxSize:    1024,
+		MaxBackups: 20,
 		LocalTime:  true,
-		Compress:   true, // 是否压缩 disabled by default
+		Compress:   true,
 	})
 	encoder := zap.NewProductionEncoderConfig()
 	encoder.EncodeTime = zapcore.ISO8601TimeEncoder
